@@ -19,6 +19,15 @@ app.get("/books/:author", (req, res) => {
 app.patch("/books/:author", (req, res) => {
     const newData = data.map((user) => {
         if (req.params.author === user.author) {
+            return req.body
+        }
+        return user;
+    })
+    res.send(newData)
+});
+app.patch("/books/:author", (req, res) => {
+    const newData = data.map((user) => {
+        if (req.params.author === user.author) {
             if (req?.body?.author) user.author = req.body.author
             if (req?.body?.book_name) user.book_name = req.body.book_name
             if (req?.body?.pages) user.pages = req.body.pages
